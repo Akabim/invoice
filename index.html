@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generator Nota Catering</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+      #invoice {
+        width: 800px;
+        margin: 0 auto;
+        padding: 1rem;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      @media (max-width: 800px) {
+        #invoice {
+          width: 100%;
+          padding: 0.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+      <!-- Form Input -->
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h1 class="text-2xl font-bold mb-4">Buat Nota Catering</h1>
+        <div>
+          <label class="block mb-2 font-semibold">Nama Pelanggan:</label>
+          <input type="text" id="namaPelanggan" class="border p-2 rounded w-full mb-4" />
+
+          <label class="block mb-2 font-semibold">Tanggal Pemesanan:</label>
+          <input type="date" id="tanggalPemesanan" class="border p-2 rounded w-full mb-4" />
+
+          <label class="block mb-2 font-semibold">Tanggal Pengiriman:</label>
+          <input type="date" id="tanggalPengiriman" class="border p-2 rounded w-full mb-4" />
+
+          <label class="block mb-2 font-semibold">Pembayaran DP (Rp):</label>
+          <input type="number" id="dpInput" class="border p-2 rounded w-full mb-4" />
+
+          <!-- Pesanan -->
+          <div id="pesanan-container">
+            <div class="pesanan mb-4 border p-4 rounded">
+              <label class="font-semibold">Menu:</label>
+              <select class="menu border p-2 w-full mb-2">
+                <option value="15000">Nasi Paket 3 - RP 15,000</option>
+              </select>
+              <label>Jenis Nasi:</label>
+              <select class="nasi border p-2 w-full mb-2">
+                <option>Nasi Putih</option>
+                <option>Nasi Kuning</option>
+              </select>
+              <label>Lauk:</label>
+              <select class="lauk border p-2 w-full mb-2">
+                <option>Ayam</option>
+                <option>Daging</option>
+              </select>
+              <label>Sayur:</label>
+              <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah Sayur</button>
+              <div class="sayur-container mt-2"></div>
+              <label>Jumlah:</label>
+              <input type="number" class="jumlah border p-2 w-full mb-2" />
+            </div>
+          </div>
+          <button onclick="tambahPesanan()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Tambah Pesanan</button>
+          <button onclick="generateInvoice()" class="bg-green-500 text-white px-4 py-2 rounded">Generate Invoice</button>
+        </div>
+      </div>
+
+      <!-- Invoice -->
+      <div id="invoice" class="bg-white mt-6 rounded-lg shadow-md hidden">
+        <div class="flex justify-between items-center mb-4">
+          <div>
+            <h1 class="text-4xl font-bold mb-7">INVOICE</h1>
+            <p class="text-gray-700">Tanggal Pemesanan: <span id="tgl-pemesanan"></span></p>
+            <p class="text-gray-700">Tanggal Pengiriman: <span id="tgl-pengiriman"></span></p>
+          </div>
+          <img src="logo.png" alt="Logo" class="w-24 h-24 rounded-xl" />
+        </div>
+        <p><strong>Kepada:</strong> <span id="nama-pelanggan"></span></p>
+        <table class="w-full mt-4 border-collapse border mb-3">
+          <thead>
+            <tr class="bg-gray-200">
+              <th class="border p-2">Keterangan</th>
+              <th class="border p-2">Harga</th>
+              <th class="border p-2">Jumlah</th>
+              <th class="border p-2">Total</th>
+            </tr>
+          </thead>
+          <tbody id="invoice-items"></tbody>
+        </table>
+        <p class="text-right font-medium mt-2">Grand Total: RP <strong id="grand-total"></strong></p>
+        <p class="text-right font-medium">DP: RP <strong id="dp-value"></strong></p>
+        <p class="text-right font-medium">Sisa Pembayaran: RP <strong id="sisa-pembayaran"></strong></p>
+        <p class="mt-4">Rekening Pembayaran: <br /> BCA - 6155233838 (Ari Puspitasari)</p>
+        <p class="text-right mt-6">
+            Tanda Tangan <br>
+          <img src="signature.png" alt="Tanda Tangan" class="inline-block h-24 w-24" />
+        </p>
+      </div>
+
+      <!-- Save as Image -->
+      <div class="hidden mt-4" id="save-btn">
+        <button onclick="saveAsImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan Invoice ke Gambar</button>
+      </div>
+    </div>
+
+    <script>
+      function tambahPesanan() {
+        const container = document.getElementById("pesanan-container");
+        const clone = container.firstElementChild.cloneNode(true);
+        clone.querySelector(".sayur-container").innerHTML = "";
+        container.appendChild(clone);
+      }
+
+      function tambahSayur(button) {
+        const container = button.nextElementSibling;
+        const select = document.createElement("select");
+        select.className = "border p-2 w-full mb-2";
+        select.innerHTML = `
+          <option>Sayur Asem</option>
+          <option>Sayur Lodeh</option>
+          <option>Tumis Kangkung</option>`;
+        container.appendChild(select);
+      }
+
+      function generateInvoice() {
+        const namaPelanggan = document.getElementById("namaPelanggan").value;
+        const tglPemesanan = document.getElementById("tanggalPemesanan").value;
+        const tglPengiriman = document.getElementById("tanggalPengiriman").value;
+        const dp = parseInt(document.getElementById("dpInput").value) || 0;
+
+        let grandTotal = 0;
+        const itemsContainer = document.getElementById("invoice-items");
+        itemsContainer.innerHTML = "";
+
+        document.querySelectorAll(".pesanan").forEach((p) => {
+          const menuText = p.querySelector(".menu").options[p.querySelector(".menu").selectedIndex].text;
+          const jumlah = parseInt(p.querySelector(".jumlah").value) || 0;
+          const harga = parseInt(p.querySelector(".menu").value);
+          const total = harga * jumlah;
+          grandTotal += total;
+
+          itemsContainer.innerHTML += `<tr>
+              <td class="border p-2">${menuText}</td>
+              <td class="border p-2">RP ${harga.toLocaleString()}</td>
+              <td class="border p-2">${jumlah}</td>
+              <td class="border p-2">RP ${total.toLocaleString()}</td>
+            </tr>`;
+        });
+
+        document.getElementById("nama-pelanggan").innerText = namaPelanggan;
+        document.getElementById("tgl-pemesanan").innerText = tglPemesanan;
+        document.getElementById("tgl-pengiriman").innerText = tglPengiriman;
+        document.getElementById("grand-total").innerText = grandTotal.toLocaleString();
+        document.getElementById("dp-value").innerText = dp.toLocaleString();
+        document.getElementById("sisa-pembayaran").innerText = (grandTotal - dp).toLocaleString();
+        document.getElementById("invoice").classList.remove("hidden");
+        document.getElementById("save-btn").classList.remove("hidden");
+      }
+
+      function saveAsImage() {
+        html2canvas(document.getElementById("invoice")).then((canvas) => {
+          const link = document.createElement("a");
+          link.download = "invoice.png";
+          link.href = canvas.toDataURL();
+          link.click();
+        });
+      }
+    </script>
+  </body>
+</html>
