@@ -139,6 +139,14 @@
                             <option>Sate Kelapa</option>
                             <option>Rendang Daging</option>
                         </select>
+                        <label>Mie:</label>
+                        <select class="mie border p-2 w-full mb-2">
+                            <option>Mie Kuning</option>
+                            <option>Mie Goreng</option>
+                            <option>Bihun Putih</option>
+                            <option>Bihun Goreng</option>
+                            <option>Bihun Cabe Ijo</option>
+                        </select>
                         <label>Sayur:</label>
                         <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah
                             Sayur</button>
@@ -210,7 +218,7 @@
             pesanan.innerHTML = `
                 <label class="font-semibold">Menu:</label>
                 <select class="menu border p-2 w-full mb-2">
-                    <option value="15000">PAKET I (@17.000)</option>
+                    <option value="17000">PAKET I (@17.000)</option>
                     <option value="20000">PAKET II (@20.000)</option>
                     <option value="25000">PAKET III (@25.000)</option>
                     <option value="30000">PAKET IV (@30.000)</option>
@@ -240,6 +248,14 @@
                     <option>Sate Kelapa</option>
                     <option>Rendang Daging</option>
                 </select>
+                   <label>Mie:</label>
+                        <select class="mie border p-2 w-full mb-2">
+                            <option>Mie Kuning</option>
+                            <option>Mie Goreng</option>
+                            <option>Bihun Putih</option>
+                            <option>Bihun Goreng</option>
+                            <option>Bihun Cabe Ijo</option>
+                        </select>
                 <label>Sayur:</label>
                 <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah Sayur</button>
                 <div class="sayur-container mt-2"></div>
@@ -304,6 +320,9 @@
 
                 const lauk = pesanan.querySelector('.lauk');
                 const laukText = lauk.options[lauk.selectedIndex].text;
+                
+                const mie = pesanan.querySelector('.mie');
+                const mieText = mie.options[mie.selectedIndex].text;
 
                 const telur = pesanan.querySelector('.telur');
                 const telurText = telur.options[telur.selectedIndex].text;
@@ -327,10 +346,12 @@
             <tr>
                 <td class="border p-2">
                     <strong>${menuText}</strong><br>
-                    Nasi: ${nasiText}<br>
-                    Lauk: ${laukText}<br>
-                    Telur: ${telurText}<br>
-                    Sayur: ${sayurText}
+                    ${nasiText}<br>
+                    ${laukText}<br>
+                    ${mieText}<br>
+                    ${telurText}<br>
+                    ${sayurText}<br>
+                    Sambel
                 </td>
                 <td class="border p-2">${formatRupiah(menuValue)}</td>
                 <td class="border p-2">${jumlah}</td>
