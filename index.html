@@ -8,12 +8,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* Ukuran Invoice */
         #invoice {
-            width: 100%;
-            /* Lebar penuh sesuai layar */
-            max-width: 900px;
-            /* Batas maksimum lebarnya */
+            width: 900px;
+            /* Lebar tetap */
             margin: 0 auto;
             padding: 2rem;
             background-color: #ffffff;
@@ -23,41 +20,24 @@
             color: #333;
         }
 
-
-        /* Judul */
         #invoice h1 {
-            font-size: 3rem;
+            font-size: 4vw;
+            /* Ukuran font header mengikuti lebar layar */
             font-weight: bold;
             text-align: center;
             margin-bottom: 1.5rem;
         }
 
-        /* Informasi Tanggal */
         #invoice p {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             margin-bottom: 0.5rem;
-        }
-
-        /* Logo */
-        #invoice img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
-
-        /* Tabel Invoice */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
         }
 
         table th,
         table td {
-            border: 1px solid #ddd;
-            padding: 1rem;
-            text-align: center;
             font-size: 1.2rem;
+            padding: 1vw;
+            /* Padding tabel sesuai lebar layar */
         }
 
         table th {
@@ -69,29 +49,38 @@
             background-color: #ffffff;
         }
 
-        /* Grand Total dan DP */
         .text-right {
             font-size: 1.5rem;
             margin-top: 0.5rem;
         }
 
-        /* Tanda Tangan */
-        .signature-container {
-            text-align: right;
-            margin-top: 2rem;
-        }
-
         .signature-container img {
-            height: 150px;
-            width: 150px;
-            object-fit: contain;
+            width: 20vw;
+            /* Ukuran tanda tangan proporsional */
+            height: auto;
         }
 
         /* Responsif untuk Tampilan Kecil */
-        @media (max-width: 1311px) {
+        @media (max-width: 600px) {
             #invoice {
-                transform: scale(0.6);
-                transform-origin: top left;
+                width: 100%;
+                /* Pastikan invoice tidak melebihi lebar layar */
+            }
+
+            #invoice h1 {
+                font-size: 6vw;
+                /* Ukuran font lebih kecil di layar kecil */
+            }
+
+            table th,
+            table td {
+                font-size: 1rem;
+                /* Ukuran font lebih kecil */
+            }
+
+            .signature-container img {
+                width: 25vw;
+                /* Ukuran tanda tangan lebih kecil di layar kecil */
             }
         }
     </style>
@@ -296,9 +285,9 @@
         function saveAsImage() {
             const invoice = document.getElementById("invoice");
             html2canvas(invoice, {
-                scale: 2, // Tetap gunakan skala 2 untuk resolusi lebih tajam
-                width: invoice.clientWidth, // Lebar elemen yang terlihat
-                height: invoice.scrollHeight // Tinggi dinamis sesuai konten
+                scale: 2, // Meningkatkan resolusi gambar
+                width: invoice.clientWidth, // Lebar fix sesuai tampilan
+                height: invoice.scrollHeight // Sesuaikan tinggi konten
             }).then((canvas) => {
                 const link = document.createElement("a");
                 link.download = "invoice.png";
@@ -306,7 +295,6 @@
                 link.click();
             });
         }
-
 
     </script>
 </body>
