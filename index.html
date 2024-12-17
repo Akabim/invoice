@@ -10,7 +10,10 @@
     <style>
         /* Ukuran Invoice */
         #invoice {
-            width: 1311px;
+            width: 100%;
+            /* Lebar penuh sesuai layar */
+            max-width: 900px;
+            /* Batas maksimum lebarnya */
             margin: 0 auto;
             padding: 2rem;
             background-color: #ffffff;
@@ -19,6 +22,7 @@
             font-family: Arial, sans-serif;
             color: #333;
         }
+
 
         /* Judul */
         #invoice h1 {
@@ -289,13 +293,12 @@
             const invoiceHeight = 500 + (document.querySelectorAll(".pesanan").length * 100);
             document.getElementById("invoice").style.height = `${invoiceHeight}px`;
         }
-
         function saveAsImage() {
             const invoice = document.getElementById("invoice");
             html2canvas(invoice, {
-                scale: 2, // Meningkatkan resolusi
-                width: 1311,
-                height: invoice.offsetHeight // Dinamis sesuai jumlah item
+                scale: 2, // Tetap gunakan skala 2 untuk resolusi lebih tajam
+                width: invoice.clientWidth, // Lebar elemen yang terlihat
+                height: invoice.scrollHeight // Tinggi dinamis sesuai konten
             }).then((canvas) => {
                 const link = document.createElement("a");
                 link.download = "invoice.png";
@@ -304,19 +307,6 @@
             });
         }
 
-        function saveAsImage() {
-            const invoice = document.getElementById("invoice");
-            html2canvas(invoice, {
-                scale: 2, // Resolusi lebih tajam
-                width: 1311, // Lebar tetap
-                height: invoice.scrollHeight // Gunakan tinggi sebenarnya
-            }).then((canvas) => {
-                const link = document.createElement("a");
-                link.download = "invoice.png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            });
-        }
 
     </script>
 </body>
