@@ -8,26 +8,89 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
+        /* Ukuran Invoice */
         #invoice {
             width: 1311px;
-            /* Ukuran absolut */
-            height: 1600px;
             margin: 0 auto;
-            padding: 1rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
             background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            color: #333;
         }
 
+        /* Judul */
+        #invoice h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Informasi Tanggal */
+        #invoice p {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Logo */
+        #invoice img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+
+        /* Tabel Invoice */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+        }
+
+        table th {
+            background-color: #f3f4f6;
+            font-weight: bold;
+        }
+
+        table td {
+            background-color: #ffffff;
+        }
+
+        /* Grand Total dan DP */
+        .text-right {
+            font-size: 1.5rem;
+            margin-top: 0.5rem;
+        }
+
+        /* Tanda Tangan */
+        .signature-container {
+            text-align: right;
+            margin-top: 2rem;
+        }
+
+        .signature-container img {
+            height: 150px;
+            width: 150px;
+            object-fit: contain;
+        }
+
+        /* Responsif untuk Tampilan Kecil */
         @media (max-width: 1311px) {
             #invoice {
-                transform: scale(0.5);
-                /* Skala 50% di layar kecil */
+                transform: scale(0.6);
                 transform-origin: top left;
             }
         }
     </style>
-
 </head>
 
 <body class="bg-gray-100">
@@ -53,22 +116,49 @@
                     <div class="pesanan mb-4 border p-4 rounded">
                         <label class="font-semibold">Menu:</label>
                         <select class="menu border p-2 w-full mb-2">
-                            <option value="15000">Nasi Paket 3 - RP 15,000</option>
+                            <option value="15000">PAKET I (@17.000)</option>
+                            <option value="20000">PAKET II (@20.000)</option>
+                            <option value="25000">PAKET III (@25.000)</option>
+                            <option value="30000">PAKET IV (@30.000)</option>
+                            <option value="35000">PAKET V (@35.000)</option>
+                            <option value="27500">PAKET LALAPAN A (@27.500)</option>
+                            <option value="22500">PAKET LALAPAN B (@22.500)</option>
                         </select>
                         <label>Jenis Nasi:</label>
                         <select class="nasi border p-2 w-full mb-2">
                             <option>Nasi Putih</option>
                             <option>Nasi Kuning</option>
+                            <option>Nasi Uduk</option>
+                            <option>Nasi Jeruk</option>
                         </select>
                         <label>Lauk:</label>
                         <select class="lauk border p-2 w-full mb-2">
-                            <option>Ayam</option>
-                            <option>Daging</option>
+                            <option>Ayam Merah</option>
+                            <option>Ayam Cabe Ijo</option>
+                            <option>Ayam Kecap</option>
+                            <option>Ayam Opor</option>
+                            <option>Ayam Goreng</option>
+                            <option>Ayam Saos Inggris</option>
+                            <option>Ayam Woku</option>
+                            <option>Ayam Wijen</option>
+                            <option>Ayam Crispy</option>
+                            <option>Ayam Rendang</option>
+                            <option>Sate Kelapa</option>
+                            <option>Rendang Daging</option>
                         </select>
                         <label>Sayur:</label>
                         <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah
                             Sayur</button>
                         <div class="sayur-container mt-2"></div>
+                        <label>Telur:</label>
+                        <select class="telur border p-2 w-full mb-2">
+                            <option>Tidak Ada</option>
+                            <option>Bulat</option>
+                            <option>Ceplok</option>
+                            <option>Kuning</option>
+                            <option>Bacem</option>
+                            <option>Bali</option>
+                        </select>
                         <label>Jumlah:</label>
                         <input type="number" class="jumlah border p-2 w-full mb-2" />
                     </div>
@@ -107,8 +197,8 @@
             <p class="text-right font-medium">Sisa Pembayaran: RP <strong id="sisa-pembayaran"></strong></p>
             <p class="mt-4">Rekening Pembayaran: <br /> BCA - 6155233838 (Ari Puspitasari)</p>
             <p class="text-right mt-6">
-                Tanda Tangan <br>
-                <img src="signature.png" alt="Tanda Tangan" class="inline-block h-24 w-24" />
+                Tanda Tangan <br><br>
+                <img src="signature.png" alt="Tanda Tangan" class="inline-block h-24 w-24 mb-4" />
             </p>
         </div>
 
@@ -132,9 +222,16 @@
             const select = document.createElement("select");
             select.className = "border p-2 w-full mb-2";
             select.innerHTML = `
-          <option>Sayur Asem</option>
-          <option>Sayur Lodeh</option>
-          <option>Tumis Kangkung</option>`;
+          <option>Oseng Buncis</option>
+          <option>Balado Kentang</option>
+          <option>Kering Tempe</option>
+          <option>Kacang Kuning</option>
+          <option>Serundeng</option>
+          <option>Acar Mateng</option>
+          <option>Bakwan Jagung</option>
+          <option>Kentang Ati</option>
+          <option>Capcay</option>
+          <option>Tempe Orek</option>`;
             container.appendChild(select);
         }
 
@@ -148,18 +245,33 @@
             const itemsContainer = document.getElementById("invoice-items");
             itemsContainer.innerHTML = "";
 
-            document.querySelectorAll(".pesanan").forEach((p) => {
+            document.querySelectorAll(".pesanan").forEach((p, index) => {
                 const menuText = p.querySelector(".menu").options[p.querySelector(".menu").selectedIndex].text;
+                const jenisNasi = p.querySelector(".nasi").value;
+                const lauk = p.querySelector(".lauk").value;
+                const sayurContainer = Array.from(p.querySelectorAll(".sayur-container select"));
+                const sayurList = sayurContainer.map(s => s.value).join(", ");
+                const telur = p.querySelector(".telur").value;
+
+
                 const jumlah = parseInt(p.querySelector(".jumlah").value) || 0;
                 const harga = parseInt(p.querySelector(".menu").value);
                 const total = harga * jumlah;
                 grandTotal += total;
 
-                itemsContainer.innerHTML += `<tr>
-              <td class="border p-2">${menuText}</td>
-              <td class="border p-2">RP ${harga.toLocaleString()}</td>
-              <td class="border p-2">${jumlah}</td>
-              <td class="border p-2">RP ${total.toLocaleString()}</td>
+                // Tambahkan item ke tabel
+                itemsContainer.innerHTML += `
+            <tr>
+                <td class="border p-2 text-left">
+                    ${menuText}<br>
+                    <small>Nasi: ${jenisNasi}</small><br>
+                    <small>Lauk: ${lauk}</small><br>
+                    <small>Sayur: ${sayurList}</small><br>
+                    <small>Telur: ${telur}</small>
+                </td>
+                <td class="border p-2">RP ${harga.toLocaleString()}</td>
+                <td class="border p-2">${jumlah}</td>
+                <td class="border p-2">RP ${total.toLocaleString()}</td>
             </tr>`;
             });
 
@@ -169,15 +281,35 @@
             document.getElementById("grand-total").innerText = grandTotal.toLocaleString();
             document.getElementById("dp-value").innerText = dp.toLocaleString();
             document.getElementById("sisa-pembayaran").innerText = (grandTotal - dp).toLocaleString();
+
             document.getElementById("invoice").classList.remove("hidden");
             document.getElementById("save-btn").classList.remove("hidden");
+
+            // Atur tinggi invoice dinamis
+            const invoiceHeight = 500 + (document.querySelectorAll(".pesanan").length * 100);
+            document.getElementById("invoice").style.height = `${invoiceHeight}px`;
         }
 
         function saveAsImage() {
-            html2canvas(document.getElementById("invoice"), {
-                scale: 1, // Pastikan skala tetap
-                width: 1311, // Ukuran sesuai desain
-                height: 1600,
+            const invoice = document.getElementById("invoice");
+            html2canvas(invoice, {
+                scale: 2, // Meningkatkan resolusi
+                width: 1311,
+                height: invoice.offsetHeight // Dinamis sesuai jumlah item
+            }).then((canvas) => {
+                const link = document.createElement("a");
+                link.download = "invoice.png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            });
+        }
+
+        function saveAsImage() {
+            const invoice = document.getElementById("invoice");
+            html2canvas(invoice, {
+                scale: 2, // Resolusi lebih tajam
+                width: 1311, // Lebar tetap
+                height: invoice.scrollHeight // Gunakan tinggi sebenarnya
             }).then((canvas) => {
                 const link = document.createElement("a");
                 link.download = "invoice.png";
