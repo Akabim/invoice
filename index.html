@@ -9,7 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         #invoice {
-            width: 900px;
+            width: 1300px;
             /* Lebar tetap */
             margin: 0 auto;
             padding: 2rem;
@@ -21,8 +21,8 @@
         }
 
         #invoice h1 {
-            font-size: 4vw;
-            /* Ukuran font header mengikuti lebar layar */
+            font-size: 3rem;
+            /* Ukuran font absolut */
             font-weight: bold;
             text-align: center;
             margin-bottom: 1.5rem;
@@ -36,8 +36,8 @@
         table th,
         table td {
             font-size: 1.2rem;
-            padding: 1vw;
-            /* Padding tabel sesuai lebar layar */
+            padding: 1rem;
+            /* Padding absolut */
         }
 
         table th {
@@ -55,8 +55,8 @@
         }
 
         .signature-container img {
-            width: 20vw;
-            /* Ukuran tanda tangan proporsional */
+            width: 250px;
+            /* Ukuran absolut */
             height: auto;
         }
 
@@ -204,10 +204,58 @@
 
     <script>
         function tambahPesanan() {
-            const container = document.getElementById("pesanan-container");
-            const clone = container.firstElementChild.cloneNode(true);
-            clone.querySelector(".sayur-container").innerHTML = "";
-            container.appendChild(clone);
+            const container = document.getElementById('pesanan-container');
+            const pesanan = document.createElement('div');
+            pesanan.className = 'pesanan mb-4 border p-4 rounded';
+            pesanan.innerHTML = `
+                <label class="font-semibold">Menu:</label>
+                <select class="menu border p-2 w-full mb-2">
+                    <option value="15000">PAKET I (@17.000)</option>
+                    <option value="20000">PAKET II (@20.000)</option>
+                    <option value="25000">PAKET III (@25.000)</option>
+                    <option value="30000">PAKET IV (@30.000)</option>
+                    <option value="35000">PAKET V (@35.000)</option>
+                    <option value="27500">PAKET LALAPAN A (@27.500)</option>
+                    <option value="22500">PAKET LALAPAN B (@22.500)</option>
+                </select>
+                <label>Jenis Nasi:</label>
+                <select class="nasi border p-2 w-full mb-2">
+                    <option>Nasi Putih</option>
+                    <option>Nasi Kuning</option>
+                    <option>Nasi Uduk</option>
+                    <option>Nasi Jeruk</option>
+                </select>
+                <label>Lauk:</label>
+                <select class="lauk border p-2 w-full mb-2">
+                    <option>Ayam Merah</option>
+                    <option>Ayam Cabe Ijo</option>
+                    <option>Ayam Kecap</option>
+                    <option>Ayam Opor</option>
+                    <option>Ayam Goreng</option>
+                    <option>Ayam Saos Inggris</option>
+                    <option>Ayam Woku</option>
+                    <option>Ayam Wijen</option>
+                    <option>Ayam Crispy</option>
+                    <option>Ayam Rendang</option>
+                    <option>Sate Kelapa</option>
+                    <option>Rendang Daging</option>
+                </select>
+                <label>Sayur:</label>
+                <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah Sayur</button>
+                <div class="sayur-container mt-2"></div>
+                <label>Telur:</label>
+                <select class="telur border p-2 w-full mb-2">
+                    <option>Tidak Ada</option>
+                    <option>Bulat</option>
+                    <option>Ceplok</option>
+                    <option>Kuning</option>
+                    <option>Bacem</option>
+                    <option>Bali</option>
+                </select>
+                <label>Jumlah:</label>
+                <input type="number" class="jumlah border p-2 w-full mb-2" />
+            `;
+            container.appendChild(pesanan);
         }
 
         function tambahSayur(button) {
@@ -215,87 +263,136 @@
             const select = document.createElement("select");
             select.className = "border p-2 w-full mb-2";
             select.innerHTML = `
-          <option>Oseng Buncis</option>
-          <option>Balado Kentang</option>
-          <option>Kering Tempe</option>
-          <option>Kacang Kuning</option>
-          <option>Serundeng</option>
-          <option>Acar Mateng</option>
-          <option>Bakwan Jagung</option>
-          <option>Kentang Ati</option>
-          <option>Capcay</option>
-          <option>Tempe Orek</option>`;
+                <option>Oseng Buncis</option>
+                <option>Balado Kentang</option>
+                <option>Kering Tempe</option>
+                <option>Kacang Kuning</option>
+                <option>Serundeng</option>
+                <option>Acar Mateng</option>
+                <option>Bakwan Jagung</option>
+                <option>Kentang Ati</option>
+                <option>Capcay</option>
+                <option>Tempe Orek</option>`;
             container.appendChild(select);
         }
 
         function generateInvoice() {
-            const namaPelanggan = document.getElementById("namaPelanggan").value;
-            const tglPemesanan = document.getElementById("tanggalPemesanan").value;
-            const tglPengiriman = document.getElementById("tanggalPengiriman").value;
-            const dp = parseInt(document.getElementById("dpInput").value) || 0;
+            // Ambil nilai-nilai dari form
+            const namaPelanggan = document.getElementById('namaPelanggan').value;
+            const tanggalPemesanan = document.getElementById('tanggalPemesanan').value;
+            const tanggalPengiriman = document.getElementById('tanggalPengiriman').value;
+            const dp = document.getElementById('dpInput').value;
 
-            let grandTotal = 0;
-            const itemsContainer = document.getElementById("invoice-items");
-            itemsContainer.innerHTML = "";
+            // Update informasi pelanggan dan tanggal pada invoice
+            document.getElementById('nama-pelanggan').innerText = namaPelanggan;
+            document.getElementById('tgl-pemesanan').innerText = tanggalPemesanan;
+            document.getElementById('tgl-pengiriman').innerText = tanggalPengiriman;
+            document.getElementById('dp-value').innerText = formatRupiah(dp);
 
-            document.querySelectorAll(".pesanan").forEach((p, index) => {
-                const menuText = p.querySelector(".menu").options[p.querySelector(".menu").selectedIndex].text;
-                const jenisNasi = p.querySelector(".nasi").value;
-                const lauk = p.querySelector(".lauk").value;
-                const sayurContainer = Array.from(p.querySelectorAll(".sayur-container select"));
-                const sayurList = sayurContainer.map(s => s.value).join(", ");
-                const telur = p.querySelector(".telur").value;
+            // Ambil semua pesanan
+            const pesananContainers = document.querySelectorAll('#pesanan-container .pesanan');
+            let total = 0;
+            let invoiceItems = '';
 
+            pesananContainers.forEach(pesanan => {
+                const menu = pesanan.querySelector('.menu');
+                const menuText = menu.options[menu.selectedIndex].text;
+                const menuValue = parseInt(menu.value);
 
-                const jumlah = parseInt(p.querySelector(".jumlah").value) || 0;
-                const harga = parseInt(p.querySelector(".menu").value);
-                const total = harga * jumlah;
-                grandTotal += total;
+                const nasi = pesanan.querySelector('.nasi');
+                const nasiText = nasi.options[nasi.selectedIndex].text;
 
-                // Tambahkan item ke tabel
-                itemsContainer.innerHTML += `
+                const lauk = pesanan.querySelector('.lauk');
+                const laukText = lauk.options[lauk.selectedIndex].text;
+
+                const telur = pesanan.querySelector('.telur');
+                const telurText = telur.options[telur.selectedIndex].text;
+
+                const jumlah = parseInt(pesanan.querySelector('.jumlah').value);
+
+                // Cari sayur yang dipilih
+                const sayurContainer = pesanan.querySelector('.sayur-container');
+                let sayurText = 'Tidak Ada Sayur';
+                if (sayurContainer.children.length > 0) {
+                    sayurText = Array.from(sayurContainer.children)
+                        .map(select => select.options[select.selectedIndex].text)
+                        .join(', ');
+                }
+
+                // Hitung total untuk masing-masing pesanan
+                const hargaTotal = menuValue * jumlah;
+
+                // Masukkan item pesanan ke dalam invoice dengan detail lengkap
+                invoiceItems += `
             <tr>
-                <td class="border p-2 text-left">
-                    ${menuText}<br>
-                    <small>Nasi: ${jenisNasi}</small><br>
-                    <small>Lauk: ${lauk}</small><br>
-                    <small>Sayur: ${sayurList}</small><br>
-                    <small>Telur: ${telur}</small>
+                <td class="border p-2">
+                    <strong>${menuText}</strong><br>
+                    Nasi: ${nasiText}<br>
+                    Lauk: ${laukText}<br>
+                    Telur: ${telurText}<br>
+                    Sayur: ${sayurText}
                 </td>
-                <td class="border p-2">RP ${harga.toLocaleString()}</td>
+                <td class="border p-2">${formatRupiah(menuValue)}</td>
                 <td class="border p-2">${jumlah}</td>
-                <td class="border p-2">RP ${total.toLocaleString()}</td>
-            </tr>`;
+                <td class="border p-2">${formatRupiah(hargaTotal)}</td>
+            </tr>
+        `;
+
+                total += hargaTotal;
             });
 
-            document.getElementById("nama-pelanggan").innerText = namaPelanggan;
-            document.getElementById("tgl-pemesanan").innerText = tglPemesanan;
-            document.getElementById("tgl-pengiriman").innerText = tglPengiriman;
-            document.getElementById("grand-total").innerText = grandTotal.toLocaleString();
-            document.getElementById("dp-value").innerText = dp.toLocaleString();
-            document.getElementById("sisa-pembayaran").innerText = (grandTotal - dp).toLocaleString();
+            // Update invoice dengan item-item pesanan dan total harga
+            document.getElementById('invoice-items').innerHTML = invoiceItems;
+            document.getElementById('grand-total').innerText = formatRupiah(total);
 
-            document.getElementById("invoice").classList.remove("hidden");
-            document.getElementById("save-btn").classList.remove("hidden");
+            // Hitung sisa pembayaran
+            const sisaPembayaran = total - dp;
+            document.getElementById('sisa-pembayaran').innerText = formatRupiah(sisaPembayaran);
 
-            // Atur tinggi invoice dinamis
-            const invoiceHeight = 500 + (document.querySelectorAll(".pesanan").length * 100);
-            document.getElementById("invoice").style.height = `${invoiceHeight}px`;
+            // Tampilkan invoice
+            document.getElementById('invoice').classList.remove('hidden');
+            document.getElementById('save-btn').classList.remove('hidden');
         }
+
+        function formatRupiah(angka) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR'
+            }).format(angka);
+        }
+
+
         function saveAsImage() {
-            const invoice = document.getElementById("invoice");
+            const invoice = document.getElementById('invoice');
+
+            // Perhitungan tinggi yang lebih presisi
+            const minHeight = 800; // Tinggi minimal
+            const additionalHeightPerItem = 100; // Tambahan tinggi per item
+            const estimatedHeight = Math.max(
+                minHeight,
+                minHeight + (document.querySelectorAll('#pesanan-container .pesanan').length * additionalHeightPerItem)
+            );
+
             html2canvas(invoice, {
-                scale: 2, // Meningkatkan resolusi gambar
-                width: invoice.clientWidth, // Lebar fix sesuai tampilan
-                height: invoice.scrollHeight // Sesuaikan tinggi konten
-            }).then((canvas) => {
-                const link = document.createElement("a");
-                link.download = "invoice.png";
-                link.href = canvas.toDataURL("image/png");
+                scale: 2,
+                useCORS: true,
+                logging: false,
+                allowTaint: true,
+                width: 1300,
+                height: estimatedHeight,
+                windowWidth: 1300,
+                windowHeight: estimatedHeight
+            }).then(canvas => {
+                const imgData = canvas.toDataURL('image/png');
+                const link = document.createElement('a');
+                link.href = imgData;
+                link.download = `invoice_${new Date().toISOString().slice(0, 10)}.png`;
                 link.click();
+            }).catch(error => {
+                console.error('Error generating image:', error);
+                alert('Gagal membuat gambar invoice. Silakan coba lagi.');
             });
         }
-
     </script>
 </body>
 
