@@ -111,6 +111,7 @@
                         <select class="tipe-menu border p-2 w-full mb-2" onchange="toggleMenuType(this)">
                             <option value="nasi">Nasi</option>
                             <option value="kue">Kue</option>
+                            <option value="nampan">Kue Nampan</option>
                         </select>
                         <div class="menu-nasi">
                             <label class="font-semibold">Menu Nasi:</label>
@@ -187,6 +188,7 @@
                             <div class="kue-container">
                                 <div class="kue-item mb-2">
                                     <select class="kue border p-2 w-full mb-2">
+                                        <option disabled selected>Pilih Kue</option>
                                         <option value="2500">Apem Selong (@2500)</option>
                                         <option value="3000">Bikang Mawar (@3000)</option>
                                         <option value="3000">Lumpur Bakar (@3000)</option>
@@ -274,73 +276,264 @@
                             <button onclick="tambahKue(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah
                                 Kue</button>
                         </div>
+                        <div class="menu-nampan hidden">
+                            <label class="font-semibold">Menu Kue Nampan:</label>
+                            <select class="nampan border p-2 w-full mb-2">
+                                <option value="80000">Nampan Satuan (@80.000)</option>
+                                <option value="85000">Nampan Mix (@85.000)</option>
+                            </select>
+                            <label>Jumlah Nampan:</label>
+                            <input type="number" class="jumlah-nampan border p-2 w-full mb-2" value="1" min="1" />
+                            <button onclick="tambahKueNampan(this)"
+                                class="bg-blue-500 text-white px-2 py-1 rounded">Tambah Kue</button>
+
+
+                            <label>Kue yang Dipilih:</label>
+                            <div class="kue-container">
+                                <div class="kue-item mb-2">
+                                    <select class="kue border p-2 w-full mb-2">
+                                        <option disabled selected>Pilih Kue</option>
+                                        <option>Apem Selong</option>
+                                        <option>Bikang Mawar</option>
+                                        <option>Lumpur Bakar</option>
+                                        <option>Lumpur Kentang</option>
+                                        <option>Lumpur Vla</option>
+                                        <option>Lumpur Ragout</option>
+                                        <option>Lumpur Surga</option>
+                                        <option>Talam Abon</option>
+                                        <option>Pastel Ragout</option>
+                                        <option>Pastel Bolognese</option>
+                                        <option>Risol Ragout</option>
+                                        <option>Risol Mayo</option>
+                                        <option>Risol Bolognese</option>
+                                        <option>Sosis Solo</option>
+                                        <option>Sosis Solo Kribo</option>
+                                        <option>Kroket Kecil</option>
+                                        <option>Kroket Besar</option>
+                                        <option>Sus Vanila/Coklat</option>
+                                        <option>Sus Sosis</option>
+                                        <option>Cumcum</option>
+                                        <option>Lemper Ayam</option>
+                                        <option>Lemper Ayam Pedas</option>
+                                        <option>Pie Buah</option>
+                                        <option>Sus Buah</option>
+                                        <option>Lapis Beras</option>
+                                        <option>Lapis Kamboja</option>
+                                        <option>Lumpia Ayam Sayur</option>
+                                        <option>Dadar Gulung Mawar</option>
+                                        <option>Iwel Iwel</option>
+                                        <option>Nogosari</option>
+                                        <option>Koci</option>
+                                        <option>Kebab Kecil</option>
+                                        <option>Kebab Besar</option>
+                                        <option>Makaroni Skutel</option>
+                                        <option>Martabak</option>
+                                        <option>Pastel Tutup</option>
+                                        <option>Gethuk Lindri</option>
+                                        <option>Klepon/Ongol-Ongol</option>
+                                        <option>Kue Thok</option>
+                                        <option>Procot</option>
+                                        <option>Terangbulan Mini</option>
+                                        <option>Kucur Gula Merah</option>
+                                        <option>Kue Mangkok</option>
+                                        <option>Wingko</option>
+                                        <option>Moci</option>
+                                        <option>Bubur Sengkolo</option>
+                                        <option>Blackforest</option>
+                                        <option>Pandan Keju</option>
+                                        <option>Spiku</option>
+                                        <option>Brownies KKS 2 Rasa</option>
+                                        <option>Brownies KKS Bunga</option>
+                                        <option>Brownies Keju</option>
+                                        <option>Rainbow Cake</option>
+                                        <option>Rollcake</option>
+                                        <option>Rollcake Rainbow</option>
+                                        <option>Bolu Kukus</option>
+                                        <option>Marmer Cake</option>
+                                        <option>Putu Ayu</option>
+                                        <option>Putu Ayu Jumbo</option>
+                                        <option>Bolu Kukus</option>
+                                        <option>Bolu Kukus Gula Merah</option>
+                                        <option>Karamel</option>
+                                        <option>Cake Pisang</option>
+                                        <option>Bolu Pisang Jumbo</option>
+                                        <option>Burger Mini</option>
+                                        <option>Donat Meses</option>
+                                        <option>Donat Siram</option>
+                                        <option>Donat Keju / Kacang</option>
+                                        <option>Donat Jumbo</option>
+                                        <option>Roti Sosis</option>
+                                        <option>Roti Boy Biasa/Meses</option>
+                                        <option>Pizza Kecil</option>
+                                        <option>Pizza Besar</option>
+                                        <option>Roti Pisang</option>
+                                        <option>Panada Ayam</option>
+                                        <option>Bolu Karamel</option>
+                                        <option>Bolu Pisang</option>
+                                        <option>Bolu Jadul 2 Rasa</option>
+                                        <option>Cake Pandan Keju</option>
+                                        <option>Blackforest</option>
+                                        <option>Panada Ayam</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <button onclick="tambahPesanan()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Tambah
+                            Pesanan</button>
+                        <button onclick="generateInvoice()" class="bg-green-500 text-white px-4 py-2 rounded">Generate
+                            Invoice</button>
                     </div>
                 </div>
-                <button onclick="tambahPesanan()" class="bg-blue-500 text-white px-4 py-2 rounded mb-4">Tambah
-                    Pesanan</button>
-                <button onclick="generateInvoice()" class="bg-green-500 text-white px-4 py-2 rounded">Generate
-                    Invoice</button>
-            </div>
-        </div>
 
-        <!-- Invoice -->
-        <div id="invoice" class="bg-white mt-6 rounded-lg shadow-md hidden">
-            <div class="flex justify-between items-center mb-4">
-                <div>
-                    <h1 class="text-4xl font-bold mb-7">INVOICE</h1>
-                    <p class="text-gray-700">Tanggal Pemesanan: <span id="tgl-pemesanan"></span></p>
-                    <p class="text-gray-700">Tanggal Pengiriman: <span id="tgl-pengiriman"></span></p>
+                <!-- Invoice -->
+                <div id="invoice" class="bg-white mt-6 rounded-lg shadow-md hidden">
+                    <div class="flex justify-between items-center mb-4">
+                        <div>
+                            <h1 class="text-4xl font-bold mb-7">INVOICE</h1>
+                            <p class="text-gray-700">Tanggal Pemesanan: <span id="tgl-pemesanan"></span></p>
+                            <p class="text-gray-700">Tanggal Pengiriman: <span id="tgl-pengiriman"></span></p>
+                        </div>
+                        <img src="logo.png" alt="Logo" class="w-24 h-24 rounded-xl" />
+                    </div>
+                    <p><strong>Kepada:</strong> <span id="nama-pelanggan"></span></p>
+                    <table class="w-full mt-4 border-collapse border mb-3">
+                        <thead>
+                            <tr class="bg-gray-200">
+                                <th class="border p-2">Keterangan</th>
+                                <th class="border p-2">Harga</th>
+                                <th class="border p-2">Jumlah</th>
+                                <th class="border p-2">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invoice-items"></tbody>
+                    </table>
+                    <p class="text-right font-medium mt-2">Total: <strong id="grand-total"></strong></p>
+                    <p class="text-right font-medium">DP: <strong id="dp-value"></strong></p>
+                    <p class="text-right font-medium">Sisa Pembayaran: <strong id="sisa-pembayaran"></strong></p>
+                    <p class="mt-4">Rekening Pembayaran: <br /> BCA - <strong>6155233838 (Ari Puspitasari)</strong></p>
+                    <p class="text-right mt-6">
+                        Tanda Tangan <br><br>
+                        <img src="signature.png" alt="Tanda Tangan" class="inline-block h-24 w-24 mb-4" />
+                    </p>
                 </div>
-                <img src="logo.png" alt="Logo" class="w-24 h-24 rounded-xl" />
+
+                <!-- Save as Image -->
+                <div class="hidden mt-4" id="save-btn">
+                    <button onclick="saveAsImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan Invoice ke
+                        Gambar</button>
+                </div>
             </div>
-            <p><strong>Kepada:</strong> <span id="nama-pelanggan"></span></p>
-            <table class="w-full mt-4 border-collapse border mb-3">
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border p-2">Keterangan</th>
-                        <th class="border p-2">Harga</th>
-                        <th class="border p-2">Jumlah</th>
-                        <th class="border p-2">Total</th>
-                    </tr>
-                </thead>
-                <tbody id="invoice-items"></tbody>
-            </table>
-            <p class="text-right font-medium mt-2">Total: <strong id="grand-total"></strong></p>
-            <p class="text-right font-medium">DP: <strong id="dp-value"></strong></p>
-            <p class="text-right font-medium">Sisa Pembayaran: <strong id="sisa-pembayaran"></strong></p>
-            <p class="mt-4">Rekening Pembayaran: <br /> BCA - <strong>6155233838 (Ari Puspitasari)</strong></p>
-            <p class="text-right mt-6">
-                Tanda Tangan <br><br>
-                <img src="signature.png" alt="Tanda Tangan" class="inline-block h-24 w-24 mb-4" />
-            </p>
-        </div>
 
-        <!-- Save as Image -->
-        <div class="hidden mt-4" id="save-btn">
-            <button onclick="saveAsImage()" class="bg-blue-600 text-white px-4 py-2 rounded">Simpan Invoice ke
-                Gambar</button>
-        </div>
-    </div>
+            <script>
+                function toggleMenuType(select) {
+                    const parent = select.closest('.pesanan');
+                    parent.querySelector('.menu-nasi').classList.toggle('hidden', select.value !== 'nasi');
+                    parent.querySelector('.menu-kue').classList.toggle('hidden', select.value !== 'kue');
+                    parent.querySelector('.menu-nampan').classList.toggle('hidden', select.value !== 'nampan');
+                }
 
-    <script>
-        function toggleMenuType(select) {
-            const menuNasi = select.closest('.pesanan').querySelector('.menu-nasi');
-            const menuKue = select.closest('.pesanan').querySelector('.menu-kue');
-            if (select.value === 'nasi') {
-                menuNasi.classList.remove('hidden');
-                menuKue.classList.add('hidden');
-            } else {
-                menuNasi.classList.add('hidden');
-                menuKue.classList.remove('hidden');
-            }
-        }
 
-        function tambahKue(button) {
-            const kueContainer = button.closest('.menu-kue').querySelector('.kue-container');
-            const kueItem = document.createElement('div');
-            kueItem.className = 'kue-item mb-2';
-            kueItem.innerHTML = `
+                function tambahKueNampan(button) {
+                    const container = button.closest('.menu-nampan').querySelector('.kue-container');
+                    const item = document.createElement('div');
+                    item.className = 'kue-item mb-2';
+                    item.innerHTML = `<select class="kue border p-2 w-full mb-2">
+                                                                <option disabled selected>Pilih Kue</option>
+
+                                 <option>Apem Selong</option>
+                                        <option>Bikang Mawar</option>
+                                        <option>Lumpur Bakar</option>
+                                        <option>Lumpur Kentang</option>
+                                        <option>Lumpur Vla</option>
+                                        <option>Lumpur Ragout</option>
+                                        <option>Lumpur Surga</option>
+                                        <option>Talam Abon</option>
+                                        <option>Pastel Ragout</option>
+                                        <option>Pastel Bolognese</option>
+                                        <option>Risol Ragout</option>
+                                        <option>Risol Mayo</option>
+                                        <option>Risol Bolognese</option>
+                                        <option>Sosis Solo</option>
+                                        <option>Sosis Solo Kribo</option>
+                                        <option>Kroket Kecil</option>
+                                        <option>Kroket Besar</option>
+                                        <option>Sus Vanila/Coklat</option>
+                                        <option>Sus Sosis</option>
+                                        <option>Cumcum</option>
+                                        <option>Lemper Ayam</option>
+                                        <option>Lemper Ayam Pedas</option>
+                                        <option>Pie Buah</option>
+                                        <option>Sus Buah</option>
+                                        <option>Lapis Beras</option>
+                                        <option>Lapis Kamboja</option>
+                                        <option>Lumpia Ayam Sayur</option>
+                                        <option>Dadar Gulung Mawar</option>
+                                        <option>Iwel Iwel</option>
+                                        <option>Nogosari</option>
+                                        <option>Koci</option>
+                                        <option>Kebab Kecil</option>
+                                        <option>Kebab Besar</option>
+                                        <option>Makaroni Skutel</option>
+                                        <option>Martabak</option>
+                                        <option>Pastel Tutup</option>
+                                        <option>Gethuk Lindri</option>
+                                        <option>Klepon/Ongol-Ongol</option>
+                                        <option>Kue Thok</option>
+                                        <option>Procot</option>
+                                        <option>Terangbulan Mini</option>
+                                        <option>Kucur Gula Merah</option>
+                                        <option>Kue Mangkok</option>
+                                        <option>Wingko</option>
+                                        <option>Moci</option>
+                                        <option>Bubur Sengkolo</option>
+                                        <option>Blackforest</option>
+                                        <option>Pandan Keju</option>
+                                        <option>Spiku</option>
+                                        <option>Brownies KKS 2 Rasa</option>
+                                        <option>Brownies KKS Bunga</option>
+                                        <option>Brownies Keju</option>
+                                        <option>Rainbow Cake</option>
+                                        <option>Rollcake</option>
+                                        <option>Rollcake Rainbow</option>
+                                        <option>Bolu Kukus</option>
+                                        <option>Marmer Cake</option>
+                                        <option>Putu Ayu</option>
+                                        <option>Putu Ayu Jumbo</option>
+                                        <option>Bolu Kukus</option>
+                                        <option>Bolu Kukus Gula Merah</option>
+                                        <option>Karamel</option>
+                                        <option>Cake Pisang</option>
+                                        <option>Bolu Pisang Jumbo</option>
+                                        <option>Burger Mini</option>
+                                        <option>Donat Meses</option>
+                                        <option>Donat Siram</option>
+                                        <option>Donat Keju / Kacang</option>
+                                        <option>Donat Jumbo</option>
+                                        <option>Roti Sosis</option>
+                                        <option>Roti Boy Biasa/Meses</option>
+                                        <option>Pizza Kecil</option>
+                                        <option>Pizza Besar</option>
+                                        <option>Roti Pisang</option>
+                                        <option>Panada Ayam</option>
+                                        <option>Bolu Karamel</option>
+                                        <option>Bolu Pisang</option>
+                                        <option>Bolu Jadul 2 Rasa</option>
+                                        <option>Cake Pandan Keju</option>
+                                        <option>Blackforest</option>
+                                        <option>Panada Ayam</option>
+                            </select>`;
+
+                    container.appendChild(item);
+                }
+
+                function tambahKue(button) {
+                    const kueContainer = button.closest('.menu-kue').querySelector('.kue-container');
+                    const kueItem = document.createElement('div');
+                    kueItem.className = 'kue-item mb-2';
+                    kueItem.innerHTML = `
         <select class="kue border p-2 w-full mb-2">
+                                                    <option disabled selected>Pilih Kue</option>
+
            <option value="2500">Apem Selong (@2500)</option>
 <option value="3000">Bikang Mawar (@3000)</option>
 <option value="3000">Lumpur Bakar (@3000)</option>
@@ -424,189 +617,22 @@
 <option value="100000">Panada Ayam (@100000)</option>
         </select>
     `;
-            kueContainer.appendChild(kueItem);
-        }
+                    kueContainer.appendChild(kueItem);
+                }
 
-        function tambahPesanan() {
-            const container = document.getElementById('pesanan-container');
-            const pesanan = document.createElement('div');
-            pesanan.className = 'pesanan mb-4 border p-4 rounded';
-            pesanan.innerHTML = `
-                <label class="font-semibold">Tipe Menu:</label>
-                <select class="tipe-menu border p-2 w-full mb-2" onchange="toggleMenuType(this)">
-                    <option value="nasi">Nasi</option>
-                    <option value="kue">Kue</option>
-                </select>
-                <div class="menu-nasi">
-                    <label class="font-semibold">Menu Nasi:</label>
-                    <select class="menu border p-2 w-full mb-2">
-                        <option value="17000">PAKET I (@17.000)</option>
-                        <option value="20000">PAKET II (@20.000)</option>
-                        <option value="25000">PAKET III (@25.000)</option>
-                        <option value="30000">PAKET IV (@30.000)</option>
-                        <option value="35000">PAKET V (@35.000)</option>
-                        <option value="27500">PAKET LALAPAN A (@27.500)</option>
-                        <option value="22500">PAKET LALAPAN B (@22.500)</option>
-                    </select>
-                    <label>Jenis Nasi:</label>
-                    <select class="nasi border p-2 w-full mb-2">
-                        <option>Nasi Putih</option>
-                        <option>Nasi Kuning</option>
-                        <option>Nasi Uduk</option>
-                        <option>Nasi Jeruk</option>
-                    </select>
-                    <label>Lauk:</label>
-                    <select class="lauk border p-2 w-full mb-2">
-                        <option>Ayam Merah</option>
-                        <option>Ayam Cabe Ijo</option>
-                        <option>Ayam Kecap</option>
-                        <option>Ayam Opor</option>
-                        <option>Ayam Goreng</option>
-                        <option>Ayam Saos Inggris</option>
-                        <option>Ayam Woku</option>
-                        <option>Ayam Wijen</option>
-                        <option>Ayam Crispy</option>
-                        <option>Ayam Rendang</option>
-                        <option>Sate Kelapa</option>
-                        <option>Rendang Daging</option>
-                    </select>
-                    <label>Mie:</label>
-                    <select class="mie border p-2 w-full mb-2">
-                        <option>Mie Kuning</option>
-                        <option>Mie Goreng</option>
-                        <option>Bihun Putih</option>
-                        <option>Bihun Goreng</option>
-                        <option>Bihun Cabe Ijo</option>
-                    </select>
-                    <label>Sayur:</label>
-                    <button onclick="tambahSayur(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah Sayur</button>
-                    <div class="sayur-container mt-2"></div>
-                                       <label>Telur:</label>
-                    <select class="telur border p-2 w-full mb-2">
-                        <option>Tidak Ada</option>
-                        <option>Bulat</option>
-                        <option>Ceplok</option>
-                        <option>Kuning</option>
-                        <option>Bacem</option>
-                        <option>Bali</option>
-                    </select>
-                    <label>Jumlah:</label>
-                    <input type="number" class="jumlah border p-2 w-full mb-2" />
-                </div>
-                                       <div class="menu-kue hidden">
-                            <label class="font-semibold">Menu Snackbox:</label>
-                            <select class="snackbox border p-2 w-full mb-2">
-                                <option value="1000">Snackbox Dus Kecil (@1000)</option>
-                                <option value="1500">Snackbox Dus Sedang (@1500)</option>
-                                <option value="2000">Snackbox Dus Besar (@2000)</option>
-                                <option value="1500">Mika Brownies S (@1500)</option>
-                                <option value="3500">Mika Brownies M (@3500)</option>
-                                <option value="4000">Nampan Kecil (@4000)</option>
-                                <option value="10000">Nampan Besar (@10000)</option>
-                            </select>
-                            <label>Jumlah Snackbox:</label>
-                            <input type="number" class="jumlah-snackbox border p-2 w-full mb-2" value="1" min="1" />
+                function tambahPesanan() {
+                    const container = document.getElementById('pesanan-container');
+                    const pesanan = container.firstElementChild.cloneNode(true);
+                    pesanan.querySelectorAll('input').forEach(input => input.value = '');
+                    pesanan.querySelectorAll('.hidden').forEach(el => el.classList.add('hidden'));
+                    container.appendChild(pesanan);
+                }
 
-                            <label class="font-semibold">Kue:</label>
-                            <div class="kue-container">
-                                <div class="kue-item mb-2">
-                                    <select class="kue border p-2 w-full mb-2">
-<option value="2500">Apem Selong (@2500)</option>
-<option value="3000">Bikang Mawar (@3000)</option>
-<option value="3000">Lumpur Bakar (@3000)</option>
-<option value="3000">Lumpur Kentang (@3000)</option>
-<option value="2500">Lumpur Vla (@2500)</option>
-<option value="2500">Lumpur Ragout (@2500)</option>
-<option value="3000">Lumpur Surga (@3000)</option>
-<option value="2500">Talam Abon (@2500)</option>
-<option value="3000">Pastel Ragout (@3000)</option>
-<option value="3500">Pastel Bolognese (@3500)</option>
-<option value="2500">Risol Ragout (@2500)</option>
-<option value="3000">Risol Mayo (@3000)</option>
-<option value="3000">Risol Bolognese (@3000)</option>
-<option value="3000">Sosis Solo (@3000)</option>
-<option value="3500">Sosis Solo Kribo (@3500)</option>
-<option value="3000">Kroket Kecil (@3000)</option>
-<option value="3500">Kroket Besar (@3500)</option>
-<option value="3000">Sus Vanila/Coklat (@3000)</option>
-<option value="3000">Sus Sosis (@3000)</option>
-<option value="3000">Cumcum (@3000)</option>
-<option value="3000">Lemper Ayam (@3000)</option>
-<option value="3500">Lemper Ayam Pedas (@3500)</option>
-<option value="3000">Pie Buah (@3000)</option>
-<option value="3000">Sus Buah (@3000)</option>
-<option value="3000">Lapis Beras (@3000)</option>
-<option value="2500">Lapis Kamboja (@2500)</option>
-<option value="2500">Lumpia Ayam Sayur (@2500)</option>
-<option value="2500">Dadar Gulung Mawar (@2500)</option>
-<option value="3000">Iwel Iwel (@3000)</option>
-<option value="3000">Nogosari (@3000)</option>
-<option value="3000">Koci (@3000)</option>
-<option value="3000">Kebab Kecil (@3000)</option>
-<option value="5000">Kebab Besar (@5000)</option>
-<option value="3000">Makaroni Skutel (@3000)</option>
-<option value="3000">Martabak (@3000)</option>
-<option value="3500">Pastel Tutup (@3500)</option>
-<option value="2500">Gethuk Lindri (@2500)</option>
-<option value="2500">Klepon/Ongol-Ongol (@2500)</option>
-<option value="3000">Kue Thok (@3000)</option>
-<option value="2500">Procot (@2500)</option>
-<option value="2500">Terangbulan Mini (@2500)</option>
-<option value="2500">Kucur Gula Merah (@2500)</option>
-<option value="2500">Kue Mangkok (@2500)</option>
-<option value="3500">Wingko (@3500)</option>
-<option value="3000">Moci (@3000)</option>
-<option value="8000">Bubur Sengkolo (@8000)</option>
-<option value="3000">Blackforest (@3000)</option>
-<option value="3000">Pandan Keju (@3000)</option>
-<option value="3000">Spiku (@3000)</option>
-<option value="3500">Brownies KKS 2 Rasa (@3500)</option>
-<option value="2500">Brownies KKS Bunga (@2500)</option>
-<option value="2500">Brownies Keju (@2500)</option>
-<option value="3500">Rainbow Cake (@3500)</option>
-<option value="3000">Rollcake (@3000)</option>
-<option value="3000">Rollcake Rainbow (@3000)</option>
-<option value="2500">Bolu Kukus (@2500)</option>
-<option value="4000">Marmer Cake (@4000)</option>
-<option value="2500">Putu Ayu (@2500)</option>
-<option value="4000">Putu Ayu Jumbo (@4000)</option>
-<option value="2500">Bolu Kukus (@2500)</option>
-<option value="3000">Bolu Kukus Gula Merah (@3000)</option>
-<option value="3500">Karamel (@3500)</option>
-<option value="3000">Cake Pisang (@3000)</option>
-<option value="13500">Bolu Pisang Jumbo (@13500)</option>
-<option value="3000">Burger Mini (@3000)</option>
-<option value="2500">Donat Meses (@2500)</option>
-<option value="3500">Donat Siram (@3500)</option>
-<option value="3500">Donat Keju / Kacang (@3500)</option>
-<option value="3500">Donat Jumbo (@3500)</option>
-<option value="4000">Roti Sosis (@4000)</option>
-<option value="4000">Roti Boy Biasa/Meses (@4000)</option>
-<option value="3000">Pizza Kecil (@3000)</option>
-<option value="4000">Pizza Besar (@4000)</option>
-<option value="4000">Roti Pisang (@4000)</option>
-<option value="4500">Panada Ayam (@4500)</option>
-<option value="100000">Bolu Karamel (@100000)</option>
-<option value="75000">Bolu Pisang (@75000)</option>
-<option value="80000">Bolu Jadul 2 Rasa (@80000)</option>
-<option value="80000">Cake Pandan Keju (@80000)</option>
-<option value="80000">Blackforest (@80000)</option>
-<option value="100000">Panada Ayam (@100000)</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button onclick="tambahKue(this)" class="bg-blue-500 text-white px-2 py-1 rounded">Tambah
-                                Kue</button>
-                        </div>
-            `;
-            container.appendChild(pesanan);
-        }
-
-        function tambahSayur(button) {
-            const sayurContainer = button.closest('.pesanan').querySelector('.sayur-container');
-            const sayurSelect = document.createElement('select');
-            sayurSelect.className = 'sayur border p-2 w-full mb-2';
-            sayurSelect.innerHTML = `
+                function tambahSayur(button) {
+                    const sayurContainer = button.closest('.pesanan').querySelector('.sayur-container');
+                    const sayurSelect = document.createElement('select');
+                    sayurSelect.className = 'sayur border p-2 w-full mb-2';
+                    sayurSelect.innerHTML = `
                 <option value="Tidak Ada">Tidak Ada</option>
                 <option value="Oseng Buncis">Oseng Buncis</option>
                 <option value="Balado Kentang">Balado Kentang</option>
@@ -617,136 +643,151 @@
                 <option value="Bakwan Jagung">Bakwan Jagung</option>
                 <option value="Tempe Orek">Tempe Orek</option>
             `;
-            sayurContainer.appendChild(sayurSelect);
-        }
+                    sayurContainer.appendChild(sayurSelect);
+                }
 
-        function formatRupiah(angka) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR'
-            }).format(angka);
-        }
+                function formatRupiah(angka) {
+                    return new Intl.NumberFormat('id-ID', {
+                        style: 'currency',
+                        currency: 'IDR'
+                    }).format(angka);
+                }
 
-        function generateInvoice() {
-            const namaPelanggan = document.getElementById('namaPelanggan').value;
-            const tanggalPemesanan = document.getElementById('tanggalPemesanan').value;
-            const tanggalPengiriman = document.getElementById('tanggalPengiriman').value;
-            const dp = parseInt(document.getElementById('dpInput').value) || 0;
 
-            document.getElementById('nama-pelanggan').innerText = namaPelanggan;
-            document.getElementById('tgl-pemesanan').innerText = tanggalPemesanan;
-            document.getElementById('tgl-pengiriman').innerText = tanggalPengiriman;
-            document.getElementById('dp-value').innerText = formatRupiah(dp);
+                function generateInvoice() {
+                    const namaPelanggan = document.getElementById('namaPelanggan').value;
+                    const tanggalPemesanan = document.getElementById('tanggalPemesanan').value;
+                    const tanggalPengiriman = document.getElementById('tanggalPengiriman').value;
+                    const dp = parseInt(document.getElementById('dpInput').value) || 0;
 
-            const pesananContainers = document.querySelectorAll('#pesanan-container .pesanan');
-            let total = 0;
-            let invoiceItems = '';
+                    document.getElementById('nama-pelanggan').innerText = namaPelanggan;
+                    document.getElementById('tgl-pemesanan').innerText = tanggalPemesanan;
+                    document.getElementById('tgl-pengiriman').innerText = tanggalPengiriman;
+                    document.getElementById('dp-value').innerText = formatRupiah(dp);
 
-            pesananContainers.forEach(pesanan => {
-                const tipeMenu = pesanan.querySelector('.tipe-menu').value; // Ambil tipe menu
-                let menuText, menuValue, jumlah, lauk, jenisNasi, sayur;
+                    const pesananContainers = document.querySelectorAll('#pesanan-container .pesanan');
+                    let total = 0;
+                    let invoiceItems = '';
 
-                if (tipeMenu === 'nasi') {
-                    const menu = pesanan.querySelector('.menu');
-                    menuText = menu.options[menu.selectedIndex].text;
-                    menuValue = parseInt(menu.value);
-                    jumlah = parseInt(pesanan.querySelector('.menu-nasi .jumlah').value) || 0; // Ambil jumlah
+                    pesananContainers.forEach(pesanan => {
+                        const tipeMenu = pesanan.querySelector('.tipe-menu').value;
+                        if (tipeMenu === 'nasi') {
+                            const menu = pesanan.querySelector('.menu');
+                            const menuText = menu.options[menu.selectedIndex].text;
+                            const menuValue = parseInt(menu.value);
+                            const jumlah = parseInt(pesanan.querySelector('.menu-nasi .jumlah').value) || 0;
 
-                    // Ambil detail tambahan
-                    lauk = pesanan.querySelector('.lauk').value; // Ambil lauk
-                    jenisNasi = pesanan.querySelector('.nasi').value; // Ambil jenis nasi
-                    sayur = Array.from(pesanan.querySelectorAll('.sayur-container select')).map(select => select.value).join(', '); // Ambil sayur
+                            const lauk = pesanan.querySelector('.lauk').value;
+                            const jenisNasi = pesanan.querySelector('.nasi').value;
+                            const sayur = Array.from(pesanan.querySelectorAll('.sayur-container select')).map(select => select.value).join(', ');
 
-                    // Hitung total untuk nasi
-                    const hargaTotalNasi = menuValue * jumlah;
+                            const hargaTotalNasi = menuValue * jumlah;
 
-                    // Masukkan item pesanan nasi ke dalam invoice
-                    invoiceItems += `
-                <tr>
-                    <td class="border p-2">
-                        <strong>Menu Nasi</strong><br>
-                        ${menuText}<br>
-                        Jumlah: ${jumlah}<br>
-                        ${lauk}<br>${jenisNasi}<br>${sayur}
-                    </td>
-                    <td class="border p-2">${formatRupiah(menuValue)}</td>
-                    <td class="border p-2">${jumlah}</td>
-                    <td class="border p-2">${formatRupiah(hargaTotalNasi)}</td>
-                </tr>
-            `;
+                            invoiceItems += `
+            <tr>
+                <td class="border p-2">
+                    <strong>Menu Nasi</strong><br>
+                    ${menuText}<br>
+                    Jumlah: ${jumlah}<br>
+                    ${lauk}<br>${jenisNasi}<br>${sayur}
+                </td>
+                <td class="border p-2">${formatRupiah(menuValue)}</td>
+                <td class="border p-2">${jumlah}</td>
+                <td class="border p-2">${formatRupiah(hargaTotalNasi)}</td>
+            </tr>`;
+                            total += hargaTotalNasi;
 
-                    total += hargaTotalNasi; // Tambahkan harga total nasi ke total keseluruhan
+                        } else if (tipeMenu === 'kue') {
+                            const snackbox = pesanan.querySelector('.snackbox');
+                            const snackboxText = snackbox.options[snackbox.selectedIndex].text;
+                            const snackboxValue = parseInt(snackbox.value);
+                            const jumlahSnackbox = parseInt(pesanan.querySelector('.jumlah-snackbox').value) || 0;
 
-                } else {
-                    // Snackbox
-                    const snackbox = pesanan.querySelector('.snackbox');
-                    menuText = snackbox.options[snackbox.selectedIndex].text;
-                    const snackboxBasePrice = parseInt(snackbox.value); // Harga dasar snackbox
-                    jumlah = parseInt(pesanan.querySelector('.jumlah-snackbox').value) || 0; // Ambil jumlah snackbox
+                            // Ambil harga kue yang dipilih
+                            const kueItems = pesanan.querySelectorAll('.kue-item');
+                            let totalKue = 0;
+                            let kueDetails = '';
 
-                    // Hitung total harga kue
-                    const kueContainer = pesanan.querySelectorAll('.kue-item');
-                    let totalKue = 0; // Reset total kue untuk setiap snackbox
+                            kueItems.forEach(kueItem => {
+                                const kue = kueItem.querySelector('.kue');
+                                if (kue && kue.selectedIndex > 0) {
+                                    const kueValue = parseInt(kue.value);
+                                    totalKue += kueValue; // Tambahkan harga kue ke totalKue
+                                    kueDetails += kue.options[kue.selectedIndex].text + ', '; // Ambil nama kue
+                                }
+                            });
 
-                    kueContainer.forEach(kue => {
-                        const kueSelect = kue.querySelector('.kue');
-                        const kueValue = parseInt(kueSelect.value);
-                        const kueJumlah = 1; // Jumlah kue selalu 1 per item
+                            // Hitung total snackbox + total kue
+                            const totalPerPesanan = (snackboxValue + totalKue) * jumlahSnackbox;
 
-                        if (kueValue > 0) { // Pastikan kue dipilih
-                            // Hitung total untuk kue
-                            totalKue += kueValue; // Tambahkan harga kue ke totalKue
+                            invoiceItems += `
+    <tr>
+        <td class="border p-2">
+            <strong>Kue</strong><br>
+            ${snackboxText}<br>
+            Jumlah Snackbox: ${jumlahSnackbox}<br>
+            ${kueDetails ? `Kue: ${kueDetails.slice(0, -2)}` : ''} <!-- Menghapus koma terakhir -->
+        </td>
+        <td class="border p-2">${formatRupiah(snackboxValue + totalKue)}</td>
+        <td class="border p-2">${jumlahSnackbox}</td>
+        <td class="border p-2">${formatRupiah(totalPerPesanan)}</td>
+    </tr>`;
+                            total += totalPerPesanan;
+
+                        } else if (tipeMenu === 'nampan') {
+                            const nampan = pesanan.querySelector('.nampan');
+                            const nampanText = nampan.options[nampan.selectedIndex].text;
+                            const nampanValue = parseInt(nampan.value);
+                            const jumlahNampan = parseInt(pesanan.querySelector('.jumlah-nampan').value) || 0;
+
+                            const kueItems = pesanan.querySelectorAll('.kue-item');
+                            const kueDetails = Array.from(kueItems)
+                                .map(kueItem => {
+                                    const kue = kueItem.querySelector('.kue');
+                                    return kue && kue.selectedIndex > 0 ? kue.options[kue.selectedIndex].text : '';
+                                })
+                                .filter(kue => kue)
+                                .join(', ');
+
+                            const totalNampan = nampanValue * jumlahNampan;
+
+                            invoiceItems += `
+            <tr>
+                <td class="border p-2">
+                    <strong>Kue Nampan</strong><br>
+                    ${nampanText}<br>
+                    Jumlah: ${jumlahNampan}<br>
+                    ${kueDetails ? `Kue: ${kueDetails}` : ''}
+                </td>
+                <td class="border p-2">${formatRupiah(nampanValue)}</td>
+                <td class="border p-2">${jumlahNampan}</td>
+                <td class="border p-2">${formatRupiah(totalNampan)}</td>
+            </tr>`;
+                            total += totalNampan;
                         }
                     });
 
-                    // Hitung total snackbox
-                    const totalSnackbox = (snackboxBasePrice + totalKue) * jumlah;
+                    document.getElementById('invoice-items').innerHTML = invoiceItems;
+                    document.getElementById('grand-total').innerText = formatRupiah(total);
 
-                    // Masukkan item pesanan snackbox ke dalam invoice
-                    invoiceItems += `
-                <tr>
-                    <td class="border p-2">
-                        <strong>Kue</strong><br>
-                        ${menuText}<br>
-                        Jumlah: ${jumlah}<br>
-                        ${totalKue > 0 ? `${Array.from(kueContainer).map(kue => {
-                        const kueSelect = kue.querySelector('.kue');
-                        return `${kueSelect.options[kueSelect.selectedIndex].text}`;
-                    }).join(', ')}` : ''}
-                    </td>
-                    <td class="border p-2">${formatRupiah(snackboxBasePrice + totalKue)}</td> <!-- Menampilkan harga snackbox yang sesuai -->
-                    <td class="border p-2">${jumlah}</td>
-                    <td class="border p-2">${formatRupiah(totalSnackbox)}</td>
-                </tr>
-            `;
+                    const sisaPembayaran = total - dp;
+                    document.getElementById('sisa-pembayaran').innerText = formatRupiah(sisaPembayaran);
 
-                    total += totalSnackbox; // Tambahkan total snackbox ke total keseluruhan
+                    document.getElementById('invoice').classList.remove('hidden');
+                    document.getElementById('save-btn').classList.remove('hidden');
                 }
-            });
 
-            // Update invoice dengan item-item pesanan dan total harga
-            document.getElementById('invoice-items').innerHTML = invoiceItems;
-            document.getElementById('grand-total').innerText = formatRupiah(total);
+                function saveAsImage() {
+                    const invoice = document.getElementById('invoice');
+                    html2canvas(invoice).then(canvas => {
+                        const link = document.createElement('a');
+                        link.href = canvas.toDataURL('image/png');
+                        link.download = 'invoice.png';
+                        link.click();
+                    });
+                }
 
-            // Hitung sisa pembayaran
-            const sisaPembayaran = total - dp;
-            document.getElementById('sisa-pembayaran').innerText = formatRupiah(sisaPembayaran);
-
-            // Tampilkan invoice
-            document.getElementById('invoice').classList.remove('hidden');
-            document.getElementById('save-btn').classList.remove('hidden');
-        }
-
-        function saveAsImage() {
-            const invoice = document.getElementById('invoice');
-            html2canvas(invoice).then(canvas => {
-                const link = document.createElement('a');
-                link.href = canvas.toDataURL('image/png');
-                link.download = 'invoice.png';
-                link.click();
-            });
-        }
-    </script>
+            </script>
 </body>
 
 </html>
