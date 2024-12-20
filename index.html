@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        #invoice {
+  #invoice {
             width: 1300px;
             /* Lebar tetap */
             margin: 0 auto;
@@ -61,28 +61,8 @@
         }
 
         /* Responsif untuk Tampilan Kecil */
-        @media (max-width: 600px) {
-            #invoice {
-                width: 100%;
-                /* Pastikan invoice tidak melebihi lebar layar */
-            }
-
-            #invoice h1 {
-                font-size: 6vw;
-                /* Ukuran font lebih kecil di layar kecil */
-            }
-
-            table th,
-            table td {
-                font-size: 1rem;
-                /* Ukuran font lebih kecil */
-            }
-
-            .signature-container img {
-                width: 25vw;
-                /* Ukuran tanda tangan lebih kecil di layar kecil */
-            }
-        }
+        
+        
     </style>
 </head>
 
@@ -776,14 +756,21 @@
                     document.getElementById('invoice').classList.remove('hidden');
                     document.getElementById('save-btn').classList.remove('hidden');
                 }
-
                 function saveAsImage() {
-                    const invoice = document.getElementById('invoice');
-                    html2canvas(invoice).then(canvas => {
-                        const link = document.createElement('a');
-                        link.href = canvas.toDataURL('image/png');
-                        link.download = 'invoice.png';
-                        link.click();
+                    const invoice = document.getElementById("invoice");
+                    html2canvas(invoice, {
+                        scale: 2, // Meningkatkan resolusi gambar
+                        width: invoice.clientWidth, // Lebar elemen yang terlihat
+                        height: invoice.scrollHeight // Tinggi elemen sesuai konten
+                    }).then((canvas) => {
+                        // Mengubah canvas menjadi URL gambar
+                        const imageData = canvas.toDataURL("image/png");
+                        const link = document.createElement("a");
+                        link.href = imageData; // URL untuk gambar
+                        link.download = "invoice.png"; // Nama file yang diunduh
+                        link.click(); // Trigger unduh file
+                    }).catch((error) => {
+                        console.error("Error saving as image:", error);
                     });
                 }
 
