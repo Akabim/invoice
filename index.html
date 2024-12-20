@@ -659,6 +659,7 @@
 
                             const lauk = pesanan.querySelector('.lauk').value;
                             const jenisNasi = pesanan.querySelector('.nasi').value;
+                            const telur = pesanan.querySelector('.telur').value;
                             const sayur = Array.from(pesanan.querySelectorAll('.sayur-container select')).map(select => select.value).join(', ');
 
                             const hargaTotalNasi = menuValue * jumlah;
@@ -668,7 +669,7 @@
                 <td class="border p-2">
                     <strong>Menu Nasi</strong><br>
                     ${menuText}<br>
-                    ${lauk}<br>${jenisNasi}<br>${sayur}
+                    ${lauk}<br>${jenisNasi}<br>${sayur}<br>${telur}
                 </td>
                 <td class="border p-2">${formatRupiah(menuValue)}</td>
                 <td class="border p-2">${jumlah}</td>
