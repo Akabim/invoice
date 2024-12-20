@@ -668,7 +668,6 @@
                 <td class="border p-2">
                     <strong>Menu Nasi</strong><br>
                     ${menuText}<br>
-                    Jumlah: ${jumlah}<br>
                     ${lauk}<br>${jenisNasi}<br>${sayur}
                 </td>
                 <td class="border p-2">${formatRupiah(menuValue)}</td>
@@ -705,7 +704,6 @@
         <td class="border p-2">
             <strong>Kue</strong><br>
             ${snackboxText}<br>
-            Jumlah Snackbox: ${jumlahSnackbox}<br>
             ${kueDetails ? `Kue: ${kueDetails.slice(0, -2)}` : ''} <!-- Menghapus koma terakhir -->
         </td>
         <td class="border p-2">${formatRupiah(snackboxValue + totalKue)}</td>
@@ -736,7 +734,6 @@
                 <td class="border p-2">
                     <strong>Kue Nampan</strong><br>
                     ${nampanText}<br>
-                    Jumlah: ${jumlahNampan}<br>
                     ${kueDetails ? `Kue: ${kueDetails}` : ''}
                 </td>
                 <td class="border p-2">${formatRupiah(nampanValue)}</td>
